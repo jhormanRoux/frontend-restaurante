@@ -14,7 +14,7 @@ function Cliente() {
   const mesa = parseInt(searchParams.get('mesa')) || 1;
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/productos?disponible=true`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/productos?disponible=true`)
       .then(res => setProductos(res.data))
       .catch(err => console.error(err));
   }, []);
