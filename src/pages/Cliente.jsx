@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
-
 function Cliente() {
-
-
   const [productos, setProductos] = useState([]);
   const [pedido, setPedido] = useState({
     principio_id: null,
@@ -14,13 +11,10 @@ function Cliente() {
   });
 
   const [searchParams] = useSearchParams();
-const mesa = parseInt(searchParams.get('mesa')) || 1;
-
-
+  const mesa = parseInt(searchParams.get('mesa')) || 1;
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/productos?disponible=true')
-
+    axios.get(`${import.meta.env.VITE_API_URL}/productos?disponible=true`)
       .then(res => setProductos(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -29,15 +23,12 @@ const mesa = parseInt(searchParams.get('mesa')) || 1;
     setPedido(prev => ({ ...prev, [`${tipo}_id`]: id }));
   };
 
-
-
   const enviarPedido = () => {
     if (pedido.principio_id && pedido.proteina_id && pedido.bebida_id) {
-      axios.post('http://localhost:3000/api/pedidos', {
+      axios.post(`${import.meta.env.VITE_API_URL}/pedidos`, {
         ...pedido,
         mesa
       })
-
         .then(() => alert('✅ Pedido enviado!'))
         .catch(() => alert('❌ Error al enviar pedido'));
     } else {
@@ -47,8 +38,6 @@ const mesa = parseInt(searchParams.get('mesa')) || 1;
 
   const filtrarPorCategoria = (catId) =>
     productos.filter(p => p.categoria_id === catId);
-
-
 
   return (
     <div style={{ width: '90%', textAlign: 'center', margin: '0 auto' }}>
