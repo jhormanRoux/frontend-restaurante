@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Admin() {
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
@@ -10,14 +12,14 @@ function Admin() {
 
   // Cargar pedidos
   const cargarPedidos = () => {
-    axios.get('http://localhost:3000/api/pedidos')
+    axios.get(`${API_URL}/api/pedidos`)
       .then(res => setPedidos(res.data))
       .catch(err => console.error(err));
   };
 
   // Cargar productos
   const cargarProductos = () => {
-    axios.get('http://localhost:3000/api/productos')
+    axios.get(`${API_URL}/api/productos`)
       .then(res => setProductos(res.data))
       .catch(err => console.error(err));
   };
@@ -28,7 +30,7 @@ function Admin() {
   }, []);
 
   const completarPedido = (id) => {
-    axios.put(`http://localhost:3000/api/pedidos/${id}`, { estado: 'completado' })
+    axios.put(`${API_URL}/api/pedidos/${id}`, { estado: 'completado' })
       .then(() => {
         alert('✅ Pedido completado');
         cargarPedidos();
@@ -37,7 +39,7 @@ function Admin() {
   };
 
   const actualizarDisponibilidad = (id, disponible) => {
-    axios.put(`http://localhost:3000/api/productos/${id}/disponibilidad`, { disponible })
+    axios.put(`${API_URL}/api/productos/${id}/disponibilidad`, { disponible })
       .then(() => {
         alert('✅ Disponibilidad actualizada');
         cargarProductos();
@@ -46,7 +48,7 @@ function Admin() {
   };
 
   const crearProducto = () => {
-    axios.post('http://localhost:3000/api/productos', {
+    axios.post(`${API_URL}/api/productos`, {
       nombre: nuevoNombre,
       categoria_id: categoriaId
     })
@@ -59,7 +61,7 @@ function Admin() {
   };
 
   const eliminarProducto = (id) => {
-    axios.delete(`http://localhost:3000/api/productos/${id}`)
+    axios.delete(`${API_URL}/api/productos/${id}`)
       .then(() => {
         alert('🗑️ Producto eliminado');
         cargarProductos();
@@ -69,7 +71,7 @@ function Admin() {
 
   const eliminarPedidosCompletados = () => {
     if (window.confirm('¿Estás seguro de eliminar todos los pedidos completados?')) {
-      axios.delete('http://localhost:3000/api/pedidos/completados')
+      axios.delete(`${API_URL}/api/pedidos/completados`)
         .then(() => {
           alert('🗑️ Pedidos completados eliminados');
           cargarPedidos();
