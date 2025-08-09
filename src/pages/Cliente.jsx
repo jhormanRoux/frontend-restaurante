@@ -25,7 +25,7 @@ function Cliente() {
 
   const enviarPedido = () => {
     if (pedido.principio_id && pedido.proteina_id && pedido.bebida_id) {
-      axios.post(`${import.meta.env.VITE_API_URL}/pedidos`, {
+      axios.post(`${import.meta.env.VITE_API_URL}/api/pedidos`, {
         ...pedido,
         mesa
       })
