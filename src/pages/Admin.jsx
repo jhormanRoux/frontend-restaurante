@@ -10,6 +10,7 @@ function Admin() {
   const [productos, setProductos] = useState([]);
   const [nuevoNombre, setNuevoNombre] = useState('');
   const [categoriaId, setCategoriaId] = useState(1);
+  console.log(categoriaId)
 
   // Cargar pedidos
   const cargarPedidos = () => {

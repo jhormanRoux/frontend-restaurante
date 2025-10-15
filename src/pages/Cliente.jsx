@@ -59,6 +59,7 @@ function Cliente() {
       <div>
         <h3>Proteínas</h3>
         {filtrarPorCategoria(2).map(p => (
+
           <button
             key={p.id}
             onClick={() => seleccionar('proteina', p.id)}
@@ -66,6 +67,7 @@ function Cliente() {
           >
             {p.nombre}
           </button>
+
         ))}
       </div>
 
@@ -84,6 +86,7 @@ function Cliente() {
 
       <br />
       <button onClick={enviarPedido}>Hacer Pedido</button>
+
     </div>
   );
 }
