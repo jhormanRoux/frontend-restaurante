@@ -40,7 +40,10 @@ function Cliente() {
     productos.filter(p => p.categoria_id === catId);
 
   return (
+    
     <div style={{ width: '90%', textAlign: 'center', margin: '0 auto' }}>
+      <h2>Menú del Día — Mesa {mesa}</h2>
+
       <h2>Menú del Día</h2>
 
       <div>
