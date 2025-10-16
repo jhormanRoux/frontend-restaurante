@@ -148,6 +148,13 @@ function Admin() {
         <button onClick={eliminarPedidosCompletados} style={{ margin: '20px auto', backgroundColor: 'red', color: 'white' }}>
           🗑️ Eliminar Pedidos Completados
         </button>
+        <button 
+  onClick={eliminarPedidosCompletados} 
+  style={{ margin: '20px auto', backgroundColor: 'red', color: 'white' }}
+>
+  🗑️ Eliminar Pedidos Completados
+</button>
+
 
         <h3>Agregar Producto</h3>
         <input value={nuevoNombre} onChange={(e) => setNuevoNombre(e.target.value)} placeholder="Nombre del producto" />
